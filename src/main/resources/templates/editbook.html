@@ -12,7 +12,7 @@
     <form th:object="${book}" th:action="@{/save}" method="post">
 
 
-        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{id}" readonly />
 
 
         <label for="author">Author</label><br>
@@ -27,6 +27,18 @@
         <label for="publicationYear">Year</label><br>
         <input type="text" id="publicationYear" th:field="*{publicationYear}" /><br><br>
 
+        <label for="price">Price</label><br>
+        <input type="text" id="price" th:field="*{price}" /><br><br>
+
+        <div style="clear: both; display: block; height: 10px;"></div>
+        <label for="catlist">Category</label>
+        <select id="catlist" th:field="*{category}" class="form-control">
+            <option th:each="category: ${categories}" th:value="${category.categoryid}" th:text="${category.name}">
+            </option>
+        </select>
+
+
+        <div style="clear: both; display: block; height: 10px;"></div>
         <input type="submit" value="Save" />
     </form>
 
