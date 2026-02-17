@@ -1,6 +1,5 @@
 package k26.bookstore.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,11 +15,15 @@ import k26.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookController {
-    @Autowired
-    private BookRepository bookRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final BookRepository bookRepository;
+    private final CategoryRepository categoryRepository;
+
+    public BookController(BookRepository bookRepository, CategoryRepository categoryRepository) {
+
+        this.bookRepository = bookRepository;
+        this.categoryRepository = categoryRepository;
+    }
 
     // näyttää kaikki kirjat
     @RequestMapping(value = { "/", "/booklist" })
