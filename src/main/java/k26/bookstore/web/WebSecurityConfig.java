@@ -37,17 +37,18 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests(
                 authorize -> authorize
                         .requestMatchers("/login").permitAll()
-                        .requestMatchers("/h2-console/**").permitAll() 
+                        .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .headers(headers -> headers.frameOptions(frameOptions -> frameOptions
-                        .disable())) 
+                        .disable()))
+                .exceptionHandling(e -> e.accessDeniedPage("/access-denied"))
                 .formLogin(formlogin -> formlogin
                         .defaultSuccessUrl("/booklist", true)
                         .permitAll())
 
                 .logout(logout -> logout.permitAll())
-                .csrf(csrf -> csrf.disable()); 
+                .csrf(csrf -> csrf.disable());
 
         return http.build();
     }

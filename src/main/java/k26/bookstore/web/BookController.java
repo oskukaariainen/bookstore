@@ -77,4 +77,11 @@ public class BookController {
         return "editbook";
     }
 
+    @GetMapping("/access-denied")
+    public String accessDenied(Model model) {
+        model.addAttribute("errorMessage", "You do not have permission to perform this action.");
+        model.addAttribute("books", bookRepository.findAll());
+        return "booklist";
+    }
+
 }

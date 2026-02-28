@@ -11,7 +11,7 @@ import k26.bookstore.domain.AppUserRepository;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
-     AppUserRepository repository;
+    private final AppUserRepository repository;
 
     public UserDetailServiceImpl(AppUserRepository userRepository) {
         this.repository = userRepository;
