@@ -4,6 +4,8 @@
 <head>
     <title>Booklist</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <span sec:authentication="name">Name</span>
 </head>
 
 <body>
@@ -31,6 +33,12 @@
         </tr>
     </table>
     <a href="/add">Add book</a>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out" />
+    </form>
+
+
 </body>
 
 </html>

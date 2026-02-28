@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import k26.bookstore.domain.Category;
 import ch.qos.logback.classic.Logger;
+import k26.bookstore.domain.AppUser;
+import k26.bookstore.domain.AppUserRepository;
 import k26.bookstore.domain.Book;
 import k26.bookstore.domain.BookRepository;
 import k26.bookstore.domain.CategoryRepository;
@@ -21,8 +23,17 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository) {
+	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository,
+			AppUserRepository userRepository) {
 		return (args) -> {
+
+			log.info("Create some users");
+
+			AppUser user1 = new AppUser("user", "$2a$10$.MgqhhqDMvsKPHJK9OwO7OvFv5rFwlWbr/loZKxUCUTJlZSz2oTCC", "USER");
+			AppUser user2 = new AppUser("admin", "$2a$10$GMVXbP30ODjSw5ENAwRXQ.FmjZdmJEqn20/o62OC1jk2Rt3wEoJxC", "ADMIN");
+			userRepository.save(user1);
+			userRepository.save(user2);
+
 			log.info("save a couple of books");
 
 			Category category1 = new Category("Fantasy");

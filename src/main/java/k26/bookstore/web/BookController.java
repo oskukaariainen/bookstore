@@ -1,8 +1,10 @@
 package k26.bookstore.web;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,11 @@ public class BookController {
 
         this.bookRepository = bookRepository;
         this.categoryRepository = categoryRepository;
+    }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
     }
 
     // näyttää kaikki kirjat
@@ -55,6 +62,7 @@ public class BookController {
         return "redirect:booklist";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long id, Model model) {
         bookRepository.deleteById(id);
