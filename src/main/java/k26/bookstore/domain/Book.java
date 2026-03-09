@@ -2,6 +2,7 @@ package k26.bookstore.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,8 @@ public class Book {
     private String title;
 
     private String author;
+
+    @Column(name = "publication_year")
     private Integer publicationYear;
     private String isbn;
 
