@@ -8,7 +8,8 @@ CREATE TABLE book (
     author VARCHAR(150) NOT NULL,
     publication_year INT,
     isbn VARCHAR(50) NOT NULL,
-    price INT
+    price INT,
+	categoryid BIGINT REFERENCES category(id)
 );
 
 INSERT INTO book (title, author, publication_year, isbn, price) 
@@ -42,4 +43,6 @@ VALUES
 ('Drama'),
 ('Scifi'),
 ('Fantasy');
+
+
 
